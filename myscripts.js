@@ -18,8 +18,25 @@ function getComputerChoice(){
     }
 }
 
+const weaponMenu = document.querySelector('.weapons');
+
+weaponMenu.addEventListener('click', (event) => {
+  
+    let target = event.target;
+    switch(target.id){
+        case 'rock':
+            playRound(getComputerChoice(), "ROCK");
+            break;
+        case 'paper':
+            playRound(getComputerChoice(), "PAPER");
+            break;
+        case 'scissors':
+            playRound(getComputerChoice(), "SCISSORS");
+            break;
+    }
+});
+
 function getHumanChoice(){
-    let input = prompt("Choose ROCK,PAPER, or SCISSORs:");
     if(input.toUpperCase() == 'ROCK' || input.toUpperCase() == 'PAPER' || input.toUpperCase() == 'SCISSORS'){
         return input.toUpperCase();
     }
@@ -29,9 +46,13 @@ function getHumanChoice(){
     }
 }
 
+const body = document.querySelector('body');
+const roundResults = document.createElement('div');
+const currentRound = document.createElement('p');
 
 
 function playRound(computerChoice, humanChoice){
+
     console.log("Computer chose " + computerChoice);
     if(computerChoice == 'ROCK' && humanChoice == 'SCISSORS'){
         console.log("ROCK beats SCISSORS, Computer wins");
@@ -65,11 +86,4 @@ function playRound(computerChoice, humanChoice){
     console.log('Computer: ' + computerScore + '| Player: ' + humanScore);
 }
 
-function playGame(){
-    for(let i = 0; i< 5; i++){
-        playRound(getComputerChoice(), getHumanChoice());
-    }
-}
-
-playGame();
 
