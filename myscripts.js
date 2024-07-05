@@ -49,41 +49,59 @@ function getHumanChoice(){
 const body = document.querySelector('body');
 const roundResults = document.createElement('div');
 const currentRound = document.createElement('p');
-
+const gameResults = document.createElement('p');
+const computersChoice = document.createElement('p');
+roundResults.appendChild(computersChoice);
+roundResults.appendChild(currentRound);
+roundResults.appendChild(gameResults);
+body.appendChild(roundResults);
 
 function playRound(computerChoice, humanChoice){
 
-    console.log("Computer chose " + computerChoice);
+    computersChoice.textContent = ("Computer chose " + computerChoice);
     if(computerChoice == 'ROCK' && humanChoice == 'SCISSORS'){
-        console.log("ROCK beats SCISSORS, Computer wins");
+        currentRound.textContent = ("ROCK beats SCISSORS, Computer wins");
         computerScore++;
     }
     else if(computerChoice == 'PAPER' && humanChoice == 'ROCK'){
-        console.log("PAPER beats ROCK, Computer wins");
+        currentRound.textContent= ("PAPER beats ROCK, Computer wins");
         computerScore++;
     }
     else if(computerChoice == 'SCISSORS' && humanChoice == 'PAPER'){
-        console.log("SCISSORS beats PAPER, Computer wins");
+        currentRound.textContent = ("SCISSORS beats PAPER, Computer wins");
         computerScore++;
     }
     if(humanChoice == 'ROCK' && computerChoice == 'SCISSORS'){
-        console.log("ROCK beats SCISSORS, Player wins");
+        currentRound.textContent = ("ROCK beats SCISSORS, Player wins");
         humanScore++;
     }
     else if(humanChoice == 'PAPER' && computerChoice == 'ROCK'){
-        console.log("PAPER beats ROCK, Player wins");
+        currentRound.textContent = ("PAPER beats ROCK, Player wins");
         humanScore++;
     }
     else if(humanChoice == 'SCISSORS' && computerChoice == 'PAPER'){
-        console.log("SCISSORS beats PAPER, Player wins");
+        currentRound.textContent = ("SCISSORS beats PAPER, Player wins");
         humanScore++;
     }
     else{
-        console.log("Both players chose " + computerChoice);
+        currentRound.textContent = ("Both players chose " + computerChoice);
     }
 
-    console.log('Score');
-    console.log('Computer: ' + computerScore + '| Player: ' + humanScore);
+    if(computerScore == 5){
+        gameResults.textContent = ('The Computer reached 5 points!! We have a winnner!!');
+        computerScore = 0;
+        humanScore = 0;
+    }
+    else if(humanScore == 5){
+        gameResults.textContent = ('The Player reached 5 points!! We have a winnner!!');
+        computerScore = 0;
+        humanScore = 0;
+    }
+    else{
+        gameResults.textContent = ('Computer: ' + computerScore + '| Player: ' + humanScore);
+    }
+    
+    
 }
 
 
